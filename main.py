@@ -1,14 +1,14 @@
 # import language as language
 
 import streamlit as st
-import tesseract
+# import tesseract
 from PIL import Image
 import numpy as np
 import cv2
 from imageio.plugins import opencv
 from numpy.doc import constants
 import pytesseract as pt
-
+import helpers.tesseract as tesseract
 
 pt.pytesseract.tesseract_cmd = None
 
