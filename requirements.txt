@@ -4,3 +4,4 @@ numpy
 opencv-python-headless
 pytesseract
 # tesseract-ocr
+# click==8.1.3
