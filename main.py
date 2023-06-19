@@ -1,20 +1,22 @@
 # import language as language
 
-import streamlit as st
-# import tesseract
-from PIL import Image
 import numpy as np
-import cv2
-from imageio.plugins import opencv
-from numpy.doc import constants
-import pytesseract as pt
-import helpers.tesseract as tesseract
+import pytesseract
+import streamlit as st
+from pdf2image.exceptions import (PDFInfoNotInstalledError, PDFPageCountError,
+                                PDFPopplerTimeoutError, PDFSyntaxError)
 
-pt.pytesseract.tesseract_cmd = None
+import helpers.constants as constants
+import helpers.opencv as opencv
+import helpers.pdfimage as pdfimage
+import helpers.tesseract as tesseract
+import helpers.easy_ocr as easy_ocr
+
+pytesseract.pytesseract.tesseract_cmd = None
 
 @st.cache_resource
 def set_tesseract_path(tesseract_path: str):
-    pt.pytesseract.tesseract_cmd = tesseract_path
+    pytesseract.pytesseract.tesseract_cmd = tesseract_path
 # plate = pt.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
 # pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -39,9 +41,9 @@ def preprocess_image(image):
 
 
 def recognize_text(image):
-    text = pt.image_to_string(image=image,
+    text = pytesseract.image_to_string(image=image,
                               lang=language_short,
-                              output_type=pt.Output.STRING,
+                              output_type=pytesseract.Output.STRING,
                               config=custom_oem_psm_config)
     return text
 
