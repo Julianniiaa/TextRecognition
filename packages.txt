@@ -1,16 +1,1 @@
 tesseract-ocr
-eng
-deu
-fra
-spa
-por
-ita
-ces
-pol
-nor
-swe
-dan
-ron
-tur
-hun
-rus
