@@ -3,8 +3,8 @@
 import numpy as np
 import pytesseract
 import streamlit as st
-from pdf2image.exceptions import (PDFInfoNotInstalledError, PDFPageCountError,
-                                PDFPopplerTimeoutError, PDFSyntaxError)
+# from pdf2image.exceptions import (PDFInfoNotInstalledError, PDFPageCountError,
+#                                 PDFPopplerTimeoutError, PDFSyntaxError)
 
 import helpers.constants as constants
 import helpers.opencv as opencv
