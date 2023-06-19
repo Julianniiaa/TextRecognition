@@ -21,7 +21,7 @@ def preprocess_image(image):
 
 
 def recognize_text(image):
-    text = pt.image_to_string(image, lang='eng+rus')
+    text = pt.image_to_string(image, lang='rus')
     return text
 
 
