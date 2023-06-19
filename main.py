@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 import cv2
 
-plate = pt.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
+# plate = pt.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
 
 
 def load_image(image):
