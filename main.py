@@ -1,50 +1,27 @@
-# import language as language
-
-import numpy as np
-import pytesseract
+import pytesseract as pt
 import streamlit as st
-# from pdf2image.exceptions import (PDFInfoNotInstalledError, PDFPageCountError,
-#                                 PDFPopplerTimeoutError, PDFSyntaxError)
+from PIL import Image
+import numpy as np
+import cv2
 
-import helpers.constants as constants
-import helpers.opencv as opencv
-import helpers.pdfimage as pdfimage
-import helpers.tesseract as tesseract
-import helpers.easy_ocr as easy_ocr
 
-pytesseract.pytesseract.tesseract_cmd = None
-
-@st.cache_resource
-def set_tesseract_path(tesseract_path: str):
-    pytesseract.pytesseract.tesseract_cmd = tesseract_path
 # plate = pt.image_to_string(threshold, config='-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
 # pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-
-psm = st.selectbox(label="Page segmentation mode", options=constants.psm, index=3)
-oem_index = 3
-psm_index = constants.psm.index(psm)
-language = st.selectbox(label="Select Language", options=list(constants.languages_sorted.values()),
-                        index=constants.default_language_index)
-language_short = list(constants.languages_sorted.keys())[list(constants.languages_sorted.values()).index(language)]
-custom_oem_psm_config = tesseract.get_tesseract_config(oem_index=oem_index, psm_index=psm_index)
-
-
-def load_image(uploaded_file):
-    image = opencv.load_image(uploaded_file)
-    return image
+def load_image(image):
+    img = Image.open(image)
+    return img
 
 
 def preprocess_image(image):
-    img = opencv.convert_to_rgb(image)
+    img = np.array(image.convert('RGB'))
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    img = cv2.medianBlur(img, 3)
     return img
 
 
 def recognize_text(image):
-    text = pytesseract.image_to_string(image=image,
-                              lang=language_short,
-                              output_type=pytesseract.Output.STRING,
-                              config=custom_oem_psm_config)
+    text = pt.image_to_string(image, lang='eng+rus')
     return text
 
 
