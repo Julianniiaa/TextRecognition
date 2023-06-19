@@ -3,4 +3,3 @@ Pillow
 numpy
 opencv-python-headless
 tesseract
-pytesseract
