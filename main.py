@@ -14,14 +14,14 @@ def load_image(image):
 
 
 def preprocess_image(image):
-    img = np.array(image.convert('RGB'))
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    img = cv2.medianBlur(img, 3)
-    return img
+    # img = np.array(image.convert('RGB'))
+    # img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    # img = cv2.medianBlur(img, 3)
+    return image
 
 
 def recognize_text(image):
-    text = pt.image_to_string(image, lang='rus')
+    text = pt.image_to_string(image, lang='eng+rus')
     return text
 
 
