@@ -1,2 +1,3 @@
 tesseract-ocr
+tesseract-ocr-kyr
 tesseract-ocr-all
